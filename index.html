@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monks — Current Location</title>
+  <style>
+    html, body { height: 100%; margin: 0; font-family: -apple-system, system-ui, Arial; }
+    header { padding: 12px 14px; border-bottom: 1px solid #eee; }
+    .muted { opacity: .7; font-size: 12px; margin-top: 4px; }
+    .wrap { height: calc(100% - 62px); }
+    iframe { width: 100%; height: 100%; border: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>Monks — Current Location</strong></div>
+    <div class="muted">
+      If the map doesn’t load, tap:
+      <a href="https://www.google.com/maps/d/u/0/viewer?mid=1WDMDOholPxRUjCSK3mbX5NdMuQKWYtc&z=13" target="_blank" rel="noopener">
+        Open in Google Maps
+      </a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- IMPORTANT: Use the EMBED URL, not /viewer -->
+    <iframe src="https://www.google.com/maps/d/embed?mid=1WDMDOholPxRUjCSK3mbX5NdMuQKWYtc&ehbc=2E312F" width="640" height="480"></iframe>
+  </div>
+</body>
+</html>

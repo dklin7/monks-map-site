@@ -6,14 +6,31 @@
   <title>Monks — Current Location</title>
   <style>
     html, body { height: 100%; margin: 0; font-family: -apple-system, system-ui, Arial; }
-    header { padding: 12px 14px; border-bottom: 1px solid #eee; }
+    header { padding: 14px 16px; border-bottom: 1px solid #eee; }
+    h1 { margin: 0; font-size: 18px; }
+    #place { margin-top: 4px; font-weight: 600; font-size: 14px; }
     .muted { opacity: .7; font-size: 12px; margin-top: 4px; }
-    .wrap { height: calc(100% - 62px); }
+    .wrap { height: calc(100% - 96px); }
     iframe { width: 100%; height: 100%; border: 0; }
   </style>
 </head>
-  <div id="place" style="padding: 10px 14px; font-weight:600;">
-  Loading location…
+<body>
+
+<header>
+  <h1>Monks — Current Location</h1>
+  <div id="place">Loading location…</div>
+  <div class="muted">
+    Updates automatically from the monks’ live map.
+  </div>
+</header>
+
+<div class="wrap">
+  <iframe
+    src="https://www.google.com/maps/d/embed?mid=1WDMDOholPxRUjCSK3mbX5NdMuQKWYtc"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen>
+  </iframe>
 </div>
 
 <script>
@@ -22,7 +39,7 @@ async function loadPlace() {
     const res = await fetch("/.netlify/functions/where", { cache: "no-store" });
     const data = await res.json();
     const label = [data.city, data.state].filter(Boolean).join(", ");
-    document.getElementById("place").textContent = label;
+    document.getElementById("place").textContent = label || "Unknown location";
   } catch {
     document.getElementById("place").textContent = "Location unavailable";
   }
@@ -30,20 +47,6 @@ async function loadPlace() {
 loadPlace();
 setInterval(loadPlace, 60000);
 </script>
-<body>
-  <header>
-    <div><strong>Monks — Current Location</strong></div>
-    <div class="muted">
-      If the map doesn’t load, tap:
-      <a href="https://www.google.com/maps/d/u/0/viewer?mid=1WDMDOholPxRUjCSK3mbX5NdMuQKWYtc&z=13" target="_blank" rel="noopener">
-        Open in Google Maps
-      </a>
-    </div>
-  </header>
 
-  <div class="wrap">
-    <!-- IMPORTANT: Use the EMBED URL, not /viewer -->
-    <iframe src="https://www.google.com/maps/d/embed?mid=1WDMDOholPxRUjCSK3mbX5NdMuQKWYtc&ehbc=2E312F" width="640" height="480"></iframe>
-  </div>
 </body>
 </html>
